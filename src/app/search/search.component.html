@@ -1,0 +1,17 @@
+<nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+  <input type="text" nz-input placeholder="input search text" [formControl]="searchControl"/>
+</nz-input-group>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+</ng-template>
+
+<nz-list nzBordered *ngIf="searchFilms && searchFilms.length">
+  <ng-container *ngFor="let item of searchFilms">
+    <a routerLink="/detail/{{item.id}}">
+      <nz-list-item>
+        <span nz-typography>{{ item.title }}</span>
+        {{ item.director }}
+      </nz-list-item>
+    </a>
+  </ng-container>
+</nz-list>

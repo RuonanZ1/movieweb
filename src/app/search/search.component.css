@@ -1,0 +1,11 @@
+nz-list{
+  width: 100%;
+  height: 200px;
+  overflow-y: auto;
+  border: 0;
+  background-color: aliceblue;
+  /*解决搜索占位置,下面两句*/
+  position: absolute;
+  z-index: 99;
+}
+

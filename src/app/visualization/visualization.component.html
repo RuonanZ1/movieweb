@@ -1,0 +1,36 @@
+<p>各年数量统计</p><br>
+
+<div *ngIf="isLoading">
+  <nz-spin nzTip="Loading..." [nzDelay]="1000">
+    <nz-alert
+      nzType="info"
+      nzMessage="正在等待数据加载"
+      nzDescription="Further details about the context"
+    ></nz-alert>
+  </nz-spin>
+</div>
+<div *ngIf="!isLoading">
+  <div nz-row>
+    <div nz-col nzSpan="14">
+      <button nz-button nzType="primary" routerLink="/allVisualization" (click)="goBack()">返回</button>
+      <br>
+      <div echarts [options]="chartOptions" class="demo-chart"></div>
+    </div>
+    <div nz-col nzSpan="10">
+      <nz-row [nzGutter]="16">
+        <nz-col [nzSpan]="12">
+          <p *ngIf="!total">
+            <nz-spin nzSimple></nz-spin>
+          </p>
+          <p *ngIf="total">
+            <nz-statistic [nzValue]="(total | number)!" [nzTitle]="'电影总数'"></nz-statistic>
+          </p>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-statistic [nzValue]="(time | date)!" [nzTitle]="'时间'"></nz-statistic>
+        </nz-col>
+      </nz-row>
+    </div>
+  </div>
+</div>
+

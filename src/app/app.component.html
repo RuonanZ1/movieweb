@@ -1,0 +1,64 @@
+<nz-layout class="nz-layout_1">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzTheme]="theme ? 'dark' : 'light'">
+    <div>
+      <nz-switch [(ngModel)]="theme">
+        <span checked>Dark</span>
+        <span unchecked>Light</span>
+      </nz-switch>
+    </div>
+    <ul nz-menu [nzTheme]="theme ? 'dark' : 'light'" nzMode="inline">
+      <li nz-menu-item routerLink="" (click)="goToHome()">
+        <span nz-icon nzType="home"></span>
+        <span>Home</span>
+      </li>
+      <!-- nzTitle修改显示的标题     -->
+      <li nz-submenu nzTitle="Menu" nzIcon="tool">
+        <ul>
+          <li nz-menu-item routerLink="/films" (click)="goToDetail()">电影详情</li>
+          <li nz-submenu nzTitle="可视化">
+            <ul>
+              <li nz-menu-item routerLink="/visualization" (click)="goToCountByYear()">CountByYear</li>
+              <li nz-menu-item routerLink="/avgRateRegion" (click)="goToAvgRateRegion()">avgRateRegion</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-item routerLink="/calendar" (click)="goToCalendar()">
+        <span nz-icon nzType="file"></span>
+        <span>File</span>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <nz-layout class="nz-layout_2">
+    <!--    切换显示的按钮   -->
+    <nz-header>
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            (click)="isCollapsed = !isCollapsed"
+          ></span>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <!--  如果没有数据显示，目前还没做判断      -->
+        <div *ngIf="false">
+          <nz-empty></nz-empty>
+        </div>
+        <div *ngIf="true">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+  </nz-layout>
+  <nz-back-top (click)="goToTop()"></nz-back-top>
+</nz-layout>
+
+
+

@@ -1,0 +1,22 @@
+<p>地区年均评分</p>
+
+<div *ngIf="isLoading">
+  <nz-spin nzTip="Loading..." [nzDelay]="1000">
+    <nz-alert
+      nzType="info"
+      nzMessage="正在等待数据加载"
+      nzDescription="Further details about the context"
+    ></nz-alert>
+  </nz-spin>
+</div>
+<div *ngIf="!isLoading">
+  <button nz-button nzType="primary" routerLink="/allVisualization" (click)="goBack()">返回</button>
+  <br>
+  <nz-select [(ngModel)]="selectedRegion" (ngModelChange)="onRegionChange(selectedRegion)">
+    <nz-option nzValue="cn" nzLabel="China"></nz-option>
+    <nz-option nzValue="hk" nzLabel="Hong Kong"></nz-option>
+    <nz-option nzValue="tw" nzLabel="Taiwan"></nz-option>
+  </nz-select>
+  <div echarts (chartInit)="onChartInit($event)" [options]="chartOptions" class="chart"></div>
+
+</div>

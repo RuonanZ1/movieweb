@@ -1,0 +1,76 @@
+<div *ngIf="detailinfo">
+  <nz-descriptions nzTitle="详情" nzBordered>
+    <nz-descriptions-item nzTitle="Title">{{ detailinfo.title ? detailinfo.title : null }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Director">{{ detailinfo.director ? detailinfo.director : null }}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="language">{{ detailinfo.language ? detailinfo.language : null }}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Run time">{{ detailinfo.runtime ? detailinfo.runtime : null }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Date" [nzSpan]="2">
+      {{ detailinfo.date ? detailinfo.date : null }}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Status" [nzSpan]="3">
+      <nz-badge nzStatus="processing" nzText="Success"></nz-badge>
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Region">{{ detailinfo.region ? detailinfo.region : null }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Type">{{ detailinfo.type ? detailinfo.type : null }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Rate">{{ detailinfo.rate ? detailinfo.rate : null }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Actor">
+      {{ detailinfo.actor ? detailinfo.actor : null }}
+    </nz-descriptions-item>
+  </nz-descriptions>
+</div>
+
+<b>评论</b>
+<div *ngIf="isnull">
+  暂无评论
+</div>
+<nz-comment nzAuthor="{{comment.user_id}}" [nzDatetime]="time" *ngFor="let comment of comments">
+  <nz-avatar
+    nz-comment-avatar
+    nzIcon="user"
+    nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+  ></nz-avatar>
+  <nz-comment-content>
+    <p>
+      {{ comment.content }}
+    </p>
+  </nz-comment-content>
+  <nz-comment-action>
+        <span
+          nz-tooltip
+          nzTitle="Like"
+          nz-icon
+          nzType="like"
+          [nzTheme]="likes > 0 ? 'twotone' : 'outline'"
+          (click)="like(comment.user_id)"
+        ></span>
+    <span class="count like">{{ likes }}</span>
+  </nz-comment-action>
+  <nz-comment-action>
+        <span
+          nz-tooltip
+          nzTitle="Dislike"
+          nz-icon
+          nzType="dislike"
+          [nzTheme]="dislikes > 0 ? 'twotone' : 'outline'"
+          (click)="dislike(comment.user_id)"
+        ></span>
+    <span class="count dislike">{{ dislikes }}</span>
+  </nz-comment-action>
+  <nz-comment-action>Reply to</nz-comment-action>
+</nz-comment>
+
+<nz-comment>
+  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=""></nz-avatar>
+  <nz-comment-content>
+    <nz-form-item>
+      <textarea [(ngModel)]="inputValue" nz-input rows="4"></textarea>
+    </nz-form-item>
+    <nz-form-item>
+      <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">
+        Add Comment
+      </button>
+    </nz-form-item>
+  </nz-comment-content>
+</nz-comment>

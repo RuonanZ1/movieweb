@@ -1,0 +1,22 @@
+<p>首页</p>
+<ul nz-menu nzMode="horizontal">
+  <li nz-submenu nzPlacement="bottomLeft" nzTitle="电影详情" routerLink="/films" (click)="goToDetail()">
+    <ul>
+      <li nz-menu-group nzTitle="Item 1">
+        <ul>
+          <li nz-menu-item routerLink="/films" (click)="goToDetail()">电影详情</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li nz-submenu nzPlacement="bottomCenter" nzTitle="可视化" routerLink="/allVisualization" (click)="goToVisualization()">
+    <ul>
+      <li nz-menu-group nzTitle="Item 1">
+        <ul>
+          <li nz-menu-item routerLink="/visualization">年度数据统计</li>
+          <li nz-menu-item routerLink="avgRateRegion">avg-rate-by-region </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
